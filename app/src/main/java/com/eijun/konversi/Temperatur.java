@@ -30,10 +30,15 @@ public class Temperatur {
         return  check_after_decimal_point(K);
     }
 
+    public String ReamurToCelcius(double reamur) {
+        double C = reamur * 0.8  ;
+        return check_after_decimal_point(C) ;
+    }
 
     public String check_after_decimal_point(double decimal) {
 
         String result = null ;
+
         String[] after_point =  String.valueOf(decimal).split("[:.]") ;
 
         if (after_point[after_point.length-1].equals("0")) {
@@ -61,6 +66,9 @@ public class Temperatur {
         }else if(symbol1.equals("\u00B0C") && symbol2.equals("K")) {
             results = symbol2 + " = " +symbol1+ " + 273,5 \n " +symbol1 +
                     " = " +check_after_decimal_point(value_to_coversion) + " +273,5 " +symbol2+ " = " +result ;
+        }else if (symbol1.equals("\u00B0R") && symbol2.equals("\u00B0C")) {
+            results = symbol2 + " = " +symbol1+ " * 0,8 \n" +symbol2 +
+                    " = " +check_after_decimal_point(value_to_coversion) + " * 0,8 " +symbol2+ " = " +result;
         }
 
         return results ;

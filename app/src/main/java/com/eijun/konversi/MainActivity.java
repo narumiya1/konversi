@@ -135,6 +135,13 @@ public class MainActivity extends AppCompatActivity {
 
                     }
 
+
+                    else if (symbol_temp1.equals("\u00B0R") && symbol_temp2.equals("\u00B0C") ) {
+                        editText_temp2.setText(temperatur.CelciusToReamur(value_to_convertion));
+                        textViewHasil.setText(temperatur.getRumus("\u00B0R", "\u00B0C",
+                                value_to_convertion, temperatur.ReamurToCelcius(value_to_convertion)));
+                    }
+
                     else if (symbol_temp1.equals("\u00B0C") && symbol_temp2.equals("\u00B0C")) {
                         editText_temp2.setText(temperatur.check_after_decimal_point(value_to_convertion));
                         textViewHasil.setText("\u00B0C  =  " + temperatur.check_after_decimal_point(value_to_convertion));

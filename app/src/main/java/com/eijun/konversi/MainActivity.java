@@ -146,17 +146,48 @@ public class MainActivity extends AppCompatActivity {
                         editText_temp2.setText(temperatur.ReamurToKelvin(value_to_convertion));
                         textViewHasil.setText(temperatur.getRumus("\u00B0R", "K",
                                 value_to_convertion, temperatur.ReamurToKelvin(value_to_convertion)));
-                    } else if (symbol_temp1.equals("\u00B0C") && symbol_temp2.equals("\u00B0C")) {
+                    }
+
+                    //Fahrenheit
+                    else if(symbol_temp1.equals("\u00B0F") & symbol_temp2.equals("\u00B0C")) {
+                        editText_temp2.setText(temperatur.FahrenheitToCelcius(value_to_convertion));
+                        textViewHasil.setText(temperatur.getRumus("\u00B0F", "\u00B0C",
+                                value_to_convertion, temperatur.FahrenheitToCelcius(value_to_convertion)));
+
+                    }
+
+                    else if(symbol_temp1.equals("\u00B0F") & symbol_temp2.equals("\u00B0R")) {
+                        editText_temp2.setText(temperatur.FahrenheitToReamur(value_to_convertion));
+                        textViewHasil.setText(temperatur.getRumus("\u00B0F", "\u00B0R",
+                                value_to_convertion, temperatur.FahrenheitToReamur(value_to_convertion)));
+
+                    }
+
+                    else if(symbol_temp1.equals("\u00B0F") & symbol_temp2.equals("K")) {
+                        editText_temp2.setText(temperatur.FahrenheitToCelcius(value_to_convertion));
+                        textViewHasil.setText(temperatur.getRumus("\u00B0F", "K",
+                                value_to_convertion, temperatur.FahrenheitToKelvn(value_to_convertion)));
+
+                    }
+
+                    else if (symbol_temp1.equals("\u00B0C") && symbol_temp2.equals("\u00B0C")) {
                         editText_temp2.setText(temperatur.check_after_decimal_point(value_to_convertion));
                         textViewHasil.setText("\u00B0C  =  " + temperatur.check_after_decimal_point(value_to_convertion));
                     } else if (symbol_temp1.equals("\u00B0R") && symbol_temp2.equals("\u00B0R")) {
                         editText_temp2.setText(temperatur.check_after_decimal_point(value_to_convertion));
                         textViewHasil.setText(" \u00B0R = " + temperatur.check_after_decimal_point(value_to_convertion));
 
+
                     } else if (symbol_temp1.equals("\u00B0F") && symbol_temp2.equals("\u00B0F")) {
                         editText_temp2.setText(temperatur.check_after_decimal_point(value_to_convertion));
                         textViewHasil.setText("\u00B0F  =  " + temperatur.check_after_decimal_point(value_to_convertion));
                     }
+
+                    else if (symbol_temp1.equals("K") && symbol_temp2.equals("K")){
+                        editText_temp2.setText(temperatur.check_after_decimal_point(value_to_convertion));
+                        textViewHasil.setText("K = " +temperatur.check_after_decimal_point(value_to_convertion)  );
+                    }
+
 
                 }
             }

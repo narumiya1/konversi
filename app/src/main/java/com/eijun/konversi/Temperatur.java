@@ -49,7 +49,28 @@ public class Temperatur {
         return check_after_decimal_point(K);
     }
 
-    
+
+    /**
+     * rumus fahrenheit
+     */
+
+    public String FahrenheitToCelcius (double fahrenheit) {
+      double C = (fahrenheit - 32) / 1.8 ;
+      return  check_after_decimal_point(C) ;
+    }
+
+    public String FahrenheitToReamur(double fahrenheit) {
+        double R =  (fahrenheit - 32) / 0.44;
+        return check_after_decimal_point(R) ;
+    }
+
+    public  String FahrenheitToKelvn (double fahrenheit) {
+        double K = (fahrenheit + 459.67) / 1.8 ;
+        return  check_after_decimal_point( K ) ;
+    }
+
+
+
     public String check_after_decimal_point(double decimal) {
 
         String result = null;
@@ -93,6 +114,23 @@ public class Temperatur {
                     " = " + check_after_decimal_point(value_to_coversion) + " / 0,8 + 273,15 \n \t\t = " + result;
 
         }
+        //Fahrenheit
+        else  if (symbol1.equals("\u00B0F") && symbol2.equals("\u00B0C")) {
+            results = symbol2 + " = " +symbol1+ " - 32 / 1,8 \n" +symbol2 +
+                    " = " +check_after_decimal_point(value_to_coversion)+ " -32 / 1,8 \n \t\t" +result;
+
+        }
+        else  if (symbol1.equals("\u00B0F") && symbol2.equals("\u00B0R")) {
+            results = symbol2 + " = " +symbol1+ " - 32 / 0,44 \n" +symbol2 +
+                    " = " +check_after_decimal_point(value_to_coversion)+ " -32 / 0,44 \n \t\t" +result;
+
+        }
+        else  if (symbol1.equals("\u00B0F") && symbol2.equals("K")) {
+            results = symbol2 + " = " +symbol1+ " - 32 / 1,8 \n" +symbol2 +
+                    " = (" +check_after_decimal_point(value_to_coversion)+ "+ 459,67 ) / 1,8 \n \t\t" +result;
+
+        }
+
 
         return results;
     }

@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
                     String symbol_temp1 = SharedPrefTemp.getTempSymbol1(MainActivity.this);
                     String symbol_temp2 = SharedPrefTemp.getTempSymbol2(MainActivity.this) ;
+
                     double value_to_convertion = Double.parseDouble(editText_temp1.getText().toString());
 
                     if (symbol_temp1.equals("\u00B0C") && symbol_temp2.equals("\u00B0R")) {
@@ -127,6 +128,13 @@ public class MainActivity extends AppCompatActivity {
                                 value_to_convertion, temperatur.CeliusToFahrenheit(value_to_convertion) ));
 
                     }
+                    else if (symbol_temp1.equals("\u00B0C") && symbol_temp2.equals("K")) {
+                        editText_temp2.setText(temperatur.CelciusToKelvn(value_to_convertion));
+                        textViewHasil.setText(temperatur.getRumus("\u00B0C","K",
+                                value_to_convertion, temperatur.CelciusToKelvn(value_to_convertion) ));
+
+                    }
+
                     else if (symbol_temp1.equals("\u00B0C") && symbol_temp2.equals("\u00B0C")) {
                         editText_temp2.setText(temperatur.check_after_decimal_point(value_to_convertion));
                         textViewHasil.setText("\u00B0C  =  " + temperatur.check_after_decimal_point(value_to_convertion));
@@ -135,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
                         editText_temp2.setText(temperatur.check_after_decimal_point(value_to_convertion));
                         textViewHasil.setText("\u00B0F  =  " + temperatur.check_after_decimal_point(value_to_convertion));
                     }
+
                 }
             }
         });

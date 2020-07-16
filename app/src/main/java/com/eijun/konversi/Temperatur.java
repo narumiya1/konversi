@@ -25,6 +25,12 @@ public class Temperatur {
         return check_after_decimal_point(F) ;
     }
 
+    public String CelciusToKelvn(double celcius) {
+        double K = celcius + 273.15 ;
+        return  check_after_decimal_point(K);
+    }
+
+
     public String check_after_decimal_point(double decimal) {
 
         String result = null ;
@@ -52,6 +58,9 @@ public class Temperatur {
         else if(symbol1.equals("\u00B0C") && symbol2.equals("\u00B0F")) {
             results = symbol2 + " = " +symbol1+ " x 9/5 \n" + symbol2 +
                     " = " +check_after_decimal_point(value_to_coversion) + " x 9/5\n" +symbol2+ " = " +result ;
+        }else if(symbol1.equals("\u00B0C") && symbol2.equals("K")) {
+            results = symbol2 + " = " +symbol1+ " + 273,5 \n " +symbol1 +
+                    " = " +check_after_decimal_point(value_to_coversion) + " +273,5 " +symbol2+ " = " +result ;
         }
 
         return results ;

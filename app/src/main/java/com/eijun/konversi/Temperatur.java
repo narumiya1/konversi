@@ -47,7 +47,9 @@ public class Temperatur {
         if ( symbol1.equals("\u00B0C") && symbol2.equals("\u00B0R")) {
             results = symbol2 + " = " +symbol1+ " x 0,8 \n" + symbol2 +
                     " = " +check_after_decimal_point(value_to_coversion) +" x 0,8\n " +symbol2+ " = " +result;
-        }else if(symbol1.equals("\u00B0C") && symbol2.equals("\u00B0F")) {
+        }
+        //C -> F
+        else if(symbol1.equals("\u00B0C") && symbol2.equals("\u00B0F")) {
             results = symbol2 + " = " +symbol1+ " x 9/5 \n" + symbol2 +
                     " = " +check_after_decimal_point(value_to_coversion) + " x 9/5\n" +symbol2+ " = " +result ;
         }

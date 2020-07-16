@@ -3,6 +3,7 @@ package com.eijun.konversi;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Objects;
 
@@ -77,10 +79,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //spinner y adater 2
         ArrayAdapter<String> arrayAdapter2 = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_spinner_item, temperatures) ;
         arrayAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         AppCompatSpinner appCompatSpinner2 = findViewById(R.id.spinner_2_tempr);
+        appCompatSpinner2.setAdapter(arrayAdapter2);
         appCompatSpinner2.setSelection(SharedPrefTemp.getTempIndex2(MainActivity.this));
         appCompatSpinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -95,11 +99,52 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        AppCompatButton btn_count = findViewById(R.id.btn_count) ;
+        btn_count.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Objects.requireNonNull(editText_temp1.getText()).toString().isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Masukan nilai suhu yang ingin dikonversi", Toast.LENGTH_SHORT).show();
+                }else {
+
+                    if (linearLayout_hasil.getVisibility() == View.GONE){
+                        linearLayout_hasil.setVisibility(View.VISIBLE);
+                    }
+
+                    String symbol_temp1 = SharedPrefTemp.getTempSymbol1(MainActivity.this);
+                    String symbol_temp2 = SharedPrefTemp.getTempSymbol2(MainActivity.this) ;
+                    double value_to_convertion = Double.parseDouble(editText_temp1.getText().toString());
+
+                    if (symbol_temp1.equals("\u00B0C") && symbol_temp2.equals("\u00B0R")) {
+                        editText_temp2.setText(temperatur.CelciusToReamur(value_to_convertion));
+                        textViewHasil.setText(temperatur.getRumus("\u00B0C","\u00B0R",
+                                value_to_convertion, temperatur.CelciusToReamur(value_to_convertion)));
+
+                    }else if (symbol_temp1.equals("\u00B0C") && symbol_temp2.equals("\u00B0F")) {
+                        editText_temp2.setText(temperatur.CeliusToFahrenheit(value_to_convertion));
+                        textViewHasil.setText(temperatur.getRumus("\u00B0C","\u00B0F",
+                                value_to_convertion, temperatur.CeliusToFahrenheit(value_to_convertion) ));
+
+                    }
+                    else if (symbol_temp1.equals("\u00B0C") && symbol_temp2.equals("\u00B0C")) {
+                        editText_temp2.setText(temperatur.check_after_decimal_point(value_to_convertion));
+                        textViewHasil.setText("\u00B0C  =  " + temperatur.check_after_decimal_point(value_to_convertion));
+                    }
+                    else if (symbol_temp1.equals("\u00B0F") && symbol_temp2.equals("\u00B0F")) {
+                        editText_temp2.setText(temperatur.check_after_decimal_point(value_to_convertion));
+                        textViewHasil.setText("\u00B0F  =  " + temperatur.check_after_decimal_point(value_to_convertion));
+                    }
+                }
+            }
+        });
+
+
     }
 
     private void setUpToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setTitle("konversi suhu");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Konversi suhu");
     }
 }
